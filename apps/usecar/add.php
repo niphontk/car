@@ -176,9 +176,9 @@
 <script>
 var arr_inven = <?php echo json_encode($inventorys);?>;
 var language = "<?php echo isset($_SESSION["LANGUAGE"]) ? $_SESSION["LANGUAGE"] : "en" ?>";
-  var no_result = "<?php lang("No results found");?>";
+var no_result = "<?php lang("No results found");?>";
 
-  var msg_invent =  "<?php lang("Please Select Inventory");?>";
-        var msg_problem = "<?php lang("Please Select Problem");?>";
-        var msg_technician =  "<?php lang("Please Select Technician");?>";
+var msg_invent =  "<?php lang("Please Select Inventory");?>";
+var msg_problem = "<?php lang("Please Select Problem");?>";
+var msg_technician =  "<?php lang("Please Select Technician");?>";
 </script>
