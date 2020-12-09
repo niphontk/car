@@ -7,15 +7,19 @@
   }else{
     $conditions = " where user_id = '".$_SESSION["USER_ID"]."' order by created_at desc";
   }
-  $repair = fetch_all($fields, $table, $conditions);
+  $usecar = fetch_all($fields, $table, $conditions);
   $arr_repair_id = array();
-  foreach($repair as $v){
+  foreach($usecar as $v){
     $arr_repair_id[] = $v["id"];
   }
 
   $r_id = implode(",", $arr_repair_id);
 
-  $inventory = fetch_all("*","inventory");
+  //$inventory = fetch_all("*","inventory");
+  $fields = "*";
+  $table = "inventory";
+  $conditions = "WHERE  is_active = 'Y' ";
+  $inventory = fetch_all($fields, $table);
   $inventory_txt = array();
   foreach($inventory as $inven){
     $inventory_txt[$inven["id"]] = $inven["name"];
@@ -35,6 +39,13 @@
   $driver = fetch_all($fields, $table);
   foreach($driver as $driver){
     $driver_txt[$driver["id"]] = $driver["name"];
+  }
+
+  $fields = "*";
+  $table = "usetime";
+  $usetime = fetch_all($fields, $table);
+  foreach($usetime as $usetime){
+    $usetime_txt[$usetime["id"]] = $usetime["name"];
   }
 
   $r_status = fetch_all("*","status");
@@ -96,11 +107,13 @@
                         <?php if($_SESSION["POSITION"] == "1"){ ?>
                         <th></th>
                         <?php } ?>
-                        <th><?php lang("Date");?></th>
+                        <th><?php lang("daterequest");?></th>
                         <th><?php lang("carname");?></th>
+                        <th><?php lang("datego");?></th>
+                        <th><?php lang("timego");?></th>
                         <th><?php lang("usename");?></th>
                         <th><?php lang("goto");?></th>
-                        <th><?php lang("personnum");?></th>
+                        <th><?php lang("Status");?></th>
                         <th><?php lang("driver");?></th>
                         <th></th>
                       </tr>
@@ -110,7 +123,7 @@
                 $i = 1;
 
                          
-                   foreach($repair as $repair){
+                   foreach($usecar as $usecar){
                                  
                 ?>
                       <tr>
@@ -119,18 +132,20 @@
                         <td class="text-center">
                           <div class="icheck-primary d-inline">
                             <input type="checkbox" id="checK_<?php echo $i;?>" name="ch[]"
-                              value="<?php echo $repair["id"];?>">
+                              value="<?php echo $usecar["id"];?>">
                             <label for="checK_<?php echo $i;?>">
                             </label>
                           </div>
                         </td>
                         <?php } ?>
-                        <td><?php echo $repair["created_at"];?>[JobID : <?php echo $repair["id"];?>]</td>
-                        <td><?php echo $inventory_txt[$repair["inventory_id"]];?>[<?php echo $inventory_idnumber[$repair["inventory_id"]];?>]</td>
-                        <td><?php echo $repair["title"];?></td>
-                        <td><?php echo $repair["goto"];?></td>
-                        <td><?php echo $repair["person"];?></td>  
-                        <td><?php echo isset($driver_txt[$repair["driver_id"]]) ? $driver_txt[$repair["driver_id"]] : "-";?></td>  
+                        <td><?php echo $usecar["created_at"];?></td>                        
+                        <td><?php echo isset($inventory_txt[$usecar["inventory_id"]]) ? $inventory_txt[$usecar["inventory_id"]] : "-";?></td>
+                        <td><?php echo $usecar["use_date"];?></td>
+                        <td><?php echo $usetime_txt[$usecar["use_time"]];?></td>
+                        <td><?php echo $usecar["title"];?></td>
+                        <td><?php echo $usecar["goto"];?></td>
+                        <td><?php if($usecar["approve"]=="1") {echo "อนุมัติ";} elseif($usecar["approve"]!="1") {echo "รออนุมัติ";} ?></td>  
+                        <td><?php echo isset($driver_txt[$usecar["driver_id"]]) ? $driver_txt[$usecar["driver_id"]] : "-";?></td>  
                         <td>
                           <div class="dropdown">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
@@ -140,31 +155,25 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <?php if($_SESSION["POSITION"] == "1" || $_SESSION["POSITION"] == "4"){ ?>
                               <small><a class="dropdown-item"
-                                  href="?page=usecar/edit&id=<?php echo $repair["id"];?>"><i class="fas fa-edit"></i>
+                                  href="?page=usecar/edit&id=<?php echo $usecar["id"];?>"><i class="fas fa-edit"></i>
                                   <?php lang("Edit");?></a></small>
                               <?php }else{ ?>
                                 <small><a class="dropdown-item"
-                                  href="?page=repair/edit_job&id=<?php echo $repair["id"];?>"><i class="fas fa-edit"></i>
+                                  href="?page=usecar/edit_job&id=<?php echo $usecar["id"];?>"><i class="fas fa-edit"></i>
                                   <?php lang("Edit");?></a></small>
                               <?php } ?>
 
+                              <?php if($_SESSION["POSITION"] == "1" || $_SESSION["POSITION"] == "4"){ ?>
                               <small><a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                  data-target="#modalApprove" data-approve-id="<?php echo $repair["id"];?>"
-                                  data-repairname="<?php echo $repair["title"];?>"
+                                  data-target="#modalApprove" data-approve-id="<?php echo $usecar["id"];?>"
+                                  data-repairname="<?php echo $usecar["title"];?>"
                                   ><i class="fas fa-edit"></i>
                                   <?php lang("approve");?></a></small>
+                              <?php } ?>
 
                               <small><a class="dropdown-item"
-                                  href="?page=repair/print&repair_id=<?php echo $repair["id"];?>"><i class="fas fa-edit"></i>
+                                  href="?page=usecar/print&repair_id=<?php echo $usecar["id"];?>"><i class="fas fa-edit"></i>
                                   <?php lang("PrintJob");?></a></small>
-                             
-                              <?php if($_SESSION["POSITION"] == "1"){ ?>
-                              <small><a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                  data-target="#modalDelete" data-repair-id="<?php echo $repair["id"];?>"
-                                  data-repairname="<?php echo $repair["title"];?>"
-                                  ><i class="fas fa-minus-circle"></i>
-                                  <?php lang("Delete");?></a></small>
-                              <?php } ?>
                       
                             </div>
                           </div>

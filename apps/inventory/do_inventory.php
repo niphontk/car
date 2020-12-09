@@ -33,6 +33,8 @@ if(isset($_GET["action"]) && $_GET["action"] == "create_inventory"){
         "photo" => isset($photo) ? $photo : "",
         "moneytype_id" => $_POST["moneytype_id"],
         "id_no" => $_POST["id_no"],
+        "responsible" => $_POST["responsible"],
+        "yearrecive" => $_POST["yearrecive"],
     );
 
     $required = array(
@@ -68,7 +70,9 @@ try{
     $sql .= " `brand` = :brand, ";
     $sql .= " `photo` = :photo, ";
     $sql .= " `moneytype_id` = :moneytype_id, ";
-    $sql .= " `id_no` = :id_no ";
+    $sql .= " `id_no` = :id_no, ";
+    $sql .= " `responsible` = :responsible, ";
+    $sql .= " `yearrecive` = :yearrecive ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":is_active",$req["is_active"]);
     $stmt->bindParam(":name",$req["name"]);
@@ -80,6 +84,8 @@ try{
     $stmt->bindParam(":photo",$req["photo"]);
     $stmt->bindParam(":moneytype_id",$req["moneytype_id"]);
     $stmt->bindParam(":id_no",$req["id_no"]);
+    $stmt->bindParam(":responsible",$req["responsible"]);
+    $stmt->bindParam(":yearrecive",$req["yearrecive"]);
 
     $result = $stmt->execute();
 
@@ -124,8 +130,10 @@ try{
         "brand" => $_POST["brand"],
         "id_no" => isset($_POST["id_no"]) ? $_POST["id_no"] :  "",
         "moneytype_id" => $_POST["money"],
-        "photo" => isset($photo) ? $photo : "",        
-        "inventory_id" => $_GET["inventory_id"],
+        "photo" => isset($photo) ? $photo : "", 
+        "responsible" => $_POST["responsible"],
+        "yearrecive" => $_POST["yearrecive"],       
+        "inventory_id" => $_GET["inventory_id"],        
     );
     
     $required = array(
@@ -138,6 +146,8 @@ try{
         "brand" => "Brand",
         "id_no" => "Idno",
         "moneytype_id" => "MoneyType",
+        "responsible" => "Responsible",
+        "yearrecive" => "Yearrecive",
     );
 
 
@@ -165,7 +175,9 @@ try{
     }
     $sql .= " `brand` = :brand, ";
     $sql .= " `id_no` = :id_no, ";
-    $sql .= " `moneytype_id` = :moneytype_id ";
+    $sql .= " `moneytype_id` = :moneytype_id, ";
+    $sql .= " `responsible` = :responsible, ";
+    $sql .= " `yearrecive` = :yearrecive ";
     $sql .= "  WHERE `id` = :inventory_id  ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":is_active",$req["is_active"]);
@@ -177,6 +189,8 @@ try{
     $stmt->bindParam(":brand",$req["brand"]);
     $stmt->bindParam(":id_no",$req["id_no"]);
     $stmt->bindParam(":moneytype_id",$req["moneytype_id"]);
+    $stmt->bindParam(":responsible",$req["responsible"]);
+    $stmt->bindParam(":yearrecive",$req["yearrecive"]);
     $stmt->bindParam(":inventory_id",$req["inventory_id"]);
     if(!empty($req["photo"])){
         $stmt->bindParam(":photo",$req["photo"]);
@@ -186,7 +200,8 @@ try{
     if($result){
         $_SESSION["STATUS"] = TRUE;
         $_SESSION["MSG"] = lang("Data update successful.", false);
-        header("location:../../index.php?page=inventory/edit&inventory_id=".$req["inventory_id"]);
+        //header("location:../../index.php?page=inventory/edit&inventory_id=".$req["inventory_id"]);
+        header("location:../../index.php?page=inventory");
         exit();
      
     }

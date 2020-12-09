@@ -7,8 +7,9 @@ if(isset($_GET["action"]) && $_GET["action"] == "create_repair"){
 
 
     $req = array(
-        "inventory" => isset($_POST["inven"]) ? $_POST["inven"] : "",
+        "inventory" => isset($_POST["inven"]) ? $_POST["inven"] : "0",
         "use_date" => isset($_POST["usedate"]) ? $_POST["usedate"] : "",
+        "use_time" => isset($_POST["usetime"]) ? $_POST["usetime"] : "",
         "depart_id" => isset($_POST["depart_id"]) ? $_POST["depart_id"] : "",
         "title" => isset($_POST["title"]) ? $_POST["title"] : "",
         "description" => isset($_POST["description"]) ? $_POST["description"] : "",        
@@ -18,7 +19,7 @@ if(isset($_GET["action"]) && $_GET["action"] == "create_repair"){
     );
 
     $required = array(
-        "inventory" => "inventory",     
+        //"inventory" => "inventory",     
         "depart_id" => "depart_id",   
         "title" => "title",
     );
@@ -42,6 +43,7 @@ try{
     $sql = "INSERT INTO `usecar` SET ";
     $sql .= " `depart_id` = :depart_id, ";
     $sql .= " `use_date` =:use_date , ";
+    $sql .= " `use_time` =:use_time , ";
     $sql .= " `title` = :title, ";
     $sql .= " `goto` = :goto, ";
     $sql .= " `person` = :person, ";
@@ -53,6 +55,7 @@ try{
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":depart_id",$req["depart_id"]);
     $stmt->bindParam(":use_date",$req["use_date"]);
+    $stmt->bindParam(":use_time",$req["use_time"]);
     $stmt->bindParam(":title",$req["title"]);
     $stmt->bindParam(":goto",$req["goto"]);
     $stmt->bindParam(":person",$req["person"]);
@@ -102,8 +105,9 @@ try{
 
 
 try{
-    $sql = "DELETE FROM `repair`  ";
+    $sql = "DELETE FROM `usecar`  ";
     $sql .= "  WHERE `id` = :repair_id ";
+    echo $sql; exit;
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":repair_id",$req["repair_id"], PDO::PARAM_INT);
     $result = $stmt->execute();
@@ -180,6 +184,7 @@ try{
         "id" => isset($_POST["id"]) ? $_POST["id"] : "",
         "inventory" => isset($_POST["inven"]) ? $_POST["inven"] : "",
         "use_date" => isset($_POST["usedate"]) ? $_POST["usedate"] : "",
+        "use_time" => isset($_POST["usetime"]) ? $_POST["usetime"] : "",
         "depart_id" => isset($_POST["depart_id"]) ? $_POST["depart_id"] : "",
         "title" => isset($_POST["title"]) ? $_POST["title"] : "",
         "description" => isset($_POST["description"]) ? $_POST["description"] : "",        
@@ -210,6 +215,7 @@ try{
     $sql = "UPDATE `usecar` SET ";
     $sql .= " `inventory_id` =:inventory_id ,";
     $sql .= " `use_date` =:use_date ,";
+    $sql .= " `use_time` =:use_time ,";
     $sql .= " `depart_id` =:depart_id ,";
     $sql .= " `title` =:title ,";
     $sql .= " `description` =:description ,";
@@ -220,6 +226,7 @@ try{
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":inventory_id",$req["inventory"]);
     $stmt->bindParam(":use_date",$req["use_date"]);
+    $stmt->bindParam(":use_time",$req["use_time"]);
     $stmt->bindParam(":depart_id",$req["depart_id"]);
     $stmt->bindParam(":title",$req["title"]);
     $stmt->bindParam(":description",$req["description"]);
@@ -232,7 +239,7 @@ try{
     if($result){
         $_SESSION["STATUS"] = TRUE;
         $_SESSION["MSG"] = lang("Data update successful.", false);
-        header("location:../../index.php?page=usecar/edit&id=".$req["id"]);        
+        header("location:../../index.php?page=usecar");        
         exit();     
     }
 }catch(PDOException $e){
@@ -345,6 +352,68 @@ try{
     echo "Error: " . $e->getMessage();
     die();
 }
+}elseif(isset($_GET["action"]) && $_GET["action"] == "update_job_user"){
+    
+    $req = array(
+        "id" => isset($_POST["id"]) ? $_POST["id"] : "",
+        "use_date" => isset($_POST["usedate"]) ? $_POST["usedate"] : "",
+        "use_time" => isset($_POST["usetime"]) ? $_POST["usetime"] : "",
+        "depart_id" => isset($_POST["depart_id"]) ? $_POST["depart_id"] : "",
+        "title" => isset($_POST["title"]) ? $_POST["title"] : "",
+        "description" => isset($_POST["description"]) ? $_POST["description"] : "",        
+        "goto" => isset($_POST["goto"]) ? $_POST["goto"] : "",
+        "person" => isset($_POST["person"]) ? $_POST["person"] : "",
+    );
+
+    $required = array( 
+        "depart_id" => "depart_id",   
+        "title" => "title",
+    );
+
+    if(validate($req, $required) === FALSE){
+        $_SESSION["STATUS"] = FALSE;
+        $_SESSION["MSG"] = lang("Invalid Data.", false);
+        if($_SESSION["POSITION"] == "2"){
+            header("location:../../index.php?page=usecar");
+        }else{
+            header("location:../../index.php?page=usecar");
+        }
+        exit();
+    }
+
+try{
+
+    $sql = "UPDATE `usecar` SET ";
+    $sql .= " `use_date` =:use_date ,";
+    $sql .= " `use_time` =:use_time ,";
+    $sql .= " `depart_id` =:depart_id ,";
+    $sql .= " `title` =:title ,";
+    $sql .= " `description` =:description ,";
+    $sql .= " `goto` =:goto ,";
+    $sql .= " `person` =:person ";
+    $sql .= "  WHERE `id` = :id  ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":use_date",$req["use_date"]);
+    $stmt->bindParam(":use_time",$req["use_time"]);
+    $stmt->bindParam(":depart_id",$req["depart_id"]);
+    $stmt->bindParam(":title",$req["title"]);
+    $stmt->bindParam(":description",$req["description"]);
+    $stmt->bindParam(":goto",$req["goto"]);
+    $stmt->bindParam(":person",$req["person"]);
+    $stmt->bindParam(":id",$req["id"]);
+    $result = $stmt->execute();
+
+    if($result){
+        $_SESSION["STATUS"] = TRUE;
+        $_SESSION["MSG"] = lang("Data update successful.", false);
+        header("location:../../index.php?page=usecar");        
+        exit();     
+    }
+}catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+    die();
+}
+
 }elseif(isset($_GET["action"]) && $_GET["action"] == "delete_all"){
 
     $req = array(
@@ -384,7 +453,7 @@ try{
 
 
 try{
-    $sql = "DELETE FROM `repair`  ";
+    $sql = "DELETE FROM `usecar`  ";
     $sql .= "  WHERE `id` IN ($repair_id) ";
 
     echo $sql;
@@ -398,7 +467,7 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
-            header("location:../../index.php?page=repair");
+            header("location:../../index.php?page=usecar");
         }
         exit();
      

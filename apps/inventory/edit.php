@@ -34,6 +34,11 @@
   $conditions = " ";
   $moneytype = fetch_all($fields, $table, $conditions);
 
+  $fields = "*";
+  $table = "driver";
+  $conditions = " ";
+  $driver = fetch_all($fields, $table, $conditions);
+
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -177,6 +182,24 @@
                 </div>
 
                 <div class="form-group row">
+                  <label for="technician" class="col-sm-2 col-form-label"><?php lang("Responsible");?> <span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <select name="responsible" id="responsible" class="form-control">
+                        <option value="">-- <?php lang("Please Select Responsible");?> --</option>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password" class="col-sm-2 col-form-label"><?php lang("Yearrecive");?> <span
+                      class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="yearrecive" name="yearrecive" value="<?php echo $inventory["yearrecive"];?>"
+                      placeholder="<?php lang("Yearrecive");?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
                   <div class="offset-sm-2 col-sm-10">
                     <button type="submit" class="btn btn-primary btn-upload"><i class="fas fa-check-circle"></i>
                     <?php lang("Save");?></button>
@@ -211,6 +234,7 @@
   var type = "<?php echo $inventory["type"];?>";
   var brand = "<?php echo $inventory["brand"];?>";
   var money = "<?php echo $inventory["moneytype_id"];?>";
+  var responsible = "<?php echo $inventory["responsible"];?>";
 </script>
 
 <script>
@@ -218,6 +242,7 @@
   var arr_brand = <?php echo json_encode($brand);?>;
   var arr_cate = <?php echo json_encode($categorys);?>;
   var arr_moneytype = <?php echo json_encode($moneytype);?>;
+  var arr_driver = <?php echo json_encode($driver);?>;
 </script>
 
 

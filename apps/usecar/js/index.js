@@ -100,7 +100,7 @@ $('#modalDelete').on('show.bs.modal', function (event) {
 
     $("#modalDelete .btn-continue").off();
     $("#modalDelete .btn-continue").on("click", function(){
-        window.location.href="apps/repair/do_repair.php?action=delete&repair_id="+repair_id;
+        window.location.href="apps/usecar/do_usecar.php?action=delete&repair_id="+repair_id;
     })
   })
 

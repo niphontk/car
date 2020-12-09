@@ -26,6 +26,12 @@
   $table = "department";
   $conditions = " WHERE `is_active` = 'Y' AND `is_delete` = 'N'  ";
   $departments = fetch_all($fields, $table, $conditions);
+
+  $fields = "*";
+  $table = "driver";
+  $conditions = "WHERE  position = '3' ";
+  $driver = fetch_all($fields, $table);
+
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -156,6 +162,29 @@
                     <select name="moneytype_id" id="moneytype_id" class="form-control">
                         <option value="">-- <?php lang("Please Select reciver");?> --</option>
                       </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="technician" class="col-sm-2 col-form-label"><?php lang("Responsible");?> <span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <select name="responsible" id="responsible" class="form-control">
+                        <option value="">-- <?php lang("Please Select Responsible");?> --</option>
+                        <?php
+                          foreach($driver as $v){
+                        ?>
+                          <option value="<?php echo $v["id"];?>"><?php echo $v["name"];?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password" class="col-sm-2 col-form-label"><?php lang("Yearrecive");?> <span
+                      class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="yearrecive" name="yearrecive" value=""
+                      placeholder="<?php lang("Yearrecive");?>" required>
                   </div>
                 </div>
 

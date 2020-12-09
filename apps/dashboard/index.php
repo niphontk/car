@@ -173,28 +173,11 @@ if(!empty($repair)){
             <div class="icon">
               <i class="ion ion-android-calendar"></i>
             </div>
-            <a href="?page=repair" class="small-box-footer"><?php lang("View More");?> <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="?page=usecar" class="small-box-footer"><?php lang("View More");?> <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
       <?php } ?>
       
-      <?php if($_SESSION["POSITION"] == "1" || $_SESSION["POSITION"] == "3" || $_SESSION["POSITION"] == "4" ){?>
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-primary">
-            <div class="inner">
-              <h3><?php echo $count_technician;?></h3>
-
-              <p><?php lang("Technician");?></p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-android-contacts"></i>
-            </div>
-            <a class="small-box-footer">&nbsp;</a>
-          </div>
-        </div>
-      <?php } ?>
-
         <?php if($_SESSION["POSITION"] == "1"){?>
           <div class="col-lg-3 col-6">
           <!-- small box -->
@@ -276,20 +259,6 @@ if(!empty($repair)){
           </div>
         </div>
 
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-secondary">
-            <div class="inner">
-              <h3><?php echo $count_inventory_wo;?></h3>
-
-              <p><?php lang("Inventory Worn out");?></p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-android-desktop"></i>
-            </div>
-            <a href="?page=inventoryby&isactive=WO" class="small-box-footer"><?php lang("View More");?> <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
         <?php } ?>
 
         <?php if($_SESSION["POSITION"] == "2"){?>
@@ -304,7 +273,8 @@ if(!empty($repair)){
               
             </div>
             <div class="card-body">
-              <table class="table">
+              ยินดีต้อนรับ
+              <!-- <table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -338,7 +308,7 @@ if(!empty($repair)){
                       </tr>
 
 
-                      <!-- Modal -->
+                      <!-- Modal
                       <div class="modal fade" id="Modal<?php echo $repair["id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -384,7 +354,7 @@ if(!empty($repair)){
                       </div>
                       <?php } ?>
                     </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
         </div>

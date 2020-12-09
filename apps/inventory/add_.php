@@ -17,6 +17,11 @@
   $conditions = " WHERE `is_active` = 'Y' AND `is_delete` = 'N'  ";
   $categorys = fetch_all($fields, $table, $conditions);
 
+  $fields = "*";
+  $table = "driver";
+  $conditions = "WHERE  position = '3' ";
+  $driver = fetch_all($fields, $table);
+
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -130,6 +135,21 @@
                       </select>
                   </div>
                 </div>
+
+                <div class="form-group row">
+                  <label for="technician" class="col-sm-2 col-form-label"><?php lang("Driver");?> <span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <select name="driver" id="driver" class="form-control">
+                        <option value="">-- <?php lang("Please Select Driver");?> --</option>
+                        <?php
+                          foreach($driver as $v){
+                        ?>
+                          <option value="<?php echo $v["id"];?>"><?php echo $v["name"];?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                </div>
+
                 <div class="form-group row">
                   <div class="offset-sm-2 col-sm-10">
                     <button type="submit" class="btn btn-primary btn-upload"><i class="fas fa-check-circle"></i>

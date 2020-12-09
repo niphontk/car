@@ -31,6 +31,15 @@
   foreach($types as $type){
     $type_txt[$type["id"]] = $type["name"];
   }
+
+  $fields = "*";
+  $table = "driver";
+  $conditions = "WHERE  position = '3' ";
+  $driver = fetch_all($fields, $table);
+  foreach($driver as $driver){
+    $driver_txt[$driver["id"]] = $driver["name"];
+  }
+  
 ?>
 
 <div class="content-wrapper">
@@ -77,6 +86,7 @@
                         <th><?php lang("Name");?></th>
                         <th><?php lang("Type");?></th>
                         <th><?php lang("Brand");?></th>
+                        <th><?php lang("Responsible");?></th>
                         <th><?php lang("Status");?></th>
                         <th></th>
                       </tr>
@@ -124,6 +134,7 @@
                         <td><?php echo $row["name"];?>[<?php echo $row["serial_number"];?>]</td>
                         <td><?php echo isset($type_txt[$row["type"]]) ? $type_txt[$row["type"]] : "";?></td>
                         <td><?php echo isset($brand_txt[$row["brand"]]) ? $brand_txt[$row["brand"]] : "";?></td>
+                        <td><?php echo isset($driver_txt[$row["responsible"]]) ? $driver_txt[$row["responsible"]] : "";?></td>
                         <td><span class="badge badge-<?php echo $bg;?> badge-pill"><?php echo $status;?></span></td>
                         <td>
                           <div class="dropdown">

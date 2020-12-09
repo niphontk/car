@@ -33,7 +33,10 @@
     $status_name[$v["id"]] = $v["name"]; 
   }
 
-  $inventory = fetch_all("*","inventory");
+  $fields = "*";
+  $table = "inventory";
+  $conditions = " WHERE is_active ='Y'";
+  $inventory = fetch_all($fields, $table, $conditions);
 
   $fields = "*";
   $table = "problem";
@@ -44,6 +47,10 @@
   $table = "place";
   $conditions = "WHERE  position = '3' ";
   $users = fetch_all($fields, $table);
+
+  $fields = "*";
+  $table = "usetime";
+  $usetime = fetch_all($fields, $table);
 
 $disabled = "";
 if($_SESSION["POSITION"] == "3"){
@@ -109,6 +116,20 @@ if($_SESSION["POSITION"] == "3"){
                 </div>
 
                 <div class="form-group row">
+                  <label for="inven" class="col-sm-2 col-form-label"><?php lang("usetime");?> <span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <select name="usetime" id="usetime" class="form-control select2bs4 select2-hidden-accessible" <?php echo $disabled;?> style="width: 200px;" tabindex="-1" aria-hidden="true">
+                        <option value="">-- <?php lang("Please Select Time");?> --</option>
+                        <?php
+                          foreach($usetime as $v){
+                        ?>
+                          <option value="<?php echo $v["id"];?>" <?php if($usecar["use_time"] == $v["id"]){echo "selected";}?>><?php echo $v["name"];?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
                   <label for="department" class="col-sm-2 col-form-label"><?php lang("department");?> <span class="text-danger">*</span></label>
                   <div class="col-sm-10">
                     <select name="depart_id" id="depart_id" class="form-control select2bs4 select2-hidden-accessible" <?php echo $disabled;?> style="width: 100%;" tabindex="-1" aria-hidden="true">
@@ -167,7 +188,7 @@ if($_SESSION["POSITION"] == "3"){
                   <label for="Description" class="col-sm-2 col-form-label"><?php lang("Note");?> <span
                       class="text-danger"></span></label>
                   <div class="col-sm-10">
-                  <textarea name="description" id="Description"rows="5" class="form-control" <?php echo $disabled;?>><?php echo $usecar["description"];?></textarea>
+                  <textarea name="description" id="Description"rows="5" class="form-control" ><?php echo $usecar["description"];?></textarea>
                   </div>
                 </div>
 
@@ -179,34 +200,8 @@ if($_SESSION["POSITION"] == "3"){
                     </div>
                   </form>
                 </div>
-                <?php } ?>
-                   
-                <div class="form-group row">
-                  <label for="Description" class="col-sm-2 col-form-label"><?php lang("worklist");?></label>
-                  <div class="col-sm-10 text-right">
-                    <?php
-                  if($_SESSION["POSITION"] == "1"){ ?>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal"><?php lang("worklistprocess");?></button>
-                  <?php }?>                    
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="Description" class="col-sm-2 col-form-label"></label>
-                  <div class="col-sm-10">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th><?php lang("Status");?></th>
-                          <th><?php lang("Note");?></th>
-                          <th><?php lang("date");?></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                <?php } ?>                  
+                
                 <!-- /.tab-pane -->
               </div>
               <!-- /.tab-content -->
@@ -223,46 +218,6 @@ if($_SESSION["POSITION"] == "3"){
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><?php lang("Detail");?></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="apps/usecar/do_usecar.php?action=created_detail" method="POST">
-      <div class="modal-body">
-          <input type="hidden" name="id" value="<?php echo $usecar["id"];?>">
-          <div class="form-group">
-            <label for="status" class="col-form-label"><?php lang("Status");?>:</label>
-            <select name="status" id="status" class="form-control">
-              <option value=""><?php lang("Status");?></option>
-              <?php
-              foreach($status as $v){
-                ?>
-              <option value="<?php echo $v["id"];?>"><?php echo $v["name"];?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="note" name="note" class="col-form-label"><?php lang("Note");?>:</label>
-            <textarea class="form-control" id="note" name="note"></textarea>
-          </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php lang("Close");?></button>
-        <button type="submit" class="btn btn-primary"><?php lang("Add");?></button>
-      </div>
-      </form>
-    </div>
-  </div>
 </div>
 
 <script type="text/javascript">

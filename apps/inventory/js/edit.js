@@ -105,6 +105,18 @@ $("#forminfo").validate({
 
 $(function() {
 
+  for(x in arr_driver){
+    var driver_selected = "";
+    if(responsible == arr_driver[x]["id"]){
+      driver_selected = "selected";
+    }
+  
+    var driver_txt;
+    driver_txt += '<option value='+arr_driver[x]["id"]+' '+driver_selected+'>'+arr_driver[x]["name"]+'</option>';
+  }
+  
+  $("#responsible").append(driver_txt);
+
   for(x in arr_moneytype){
     var money_selected = "";
     if(money == arr_moneytype[x]["id"]){

@@ -52,13 +52,13 @@ $("#forminfo").validate({
   rules: {
       invent: "required",
       problem: "required",
-      description: "required",
+      //description: "required",
       technician: "required",
   },
   messages: {
     invent: msg_invent,
     problem: msg_problem,
-    description: msg_description,
+    //description: msg_description,
     technician: msg_technician,
   },
   errorElement: "em",

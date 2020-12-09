@@ -3,7 +3,7 @@
 
   $fields = "*";
   $table = "inventory";
-  $conditions = " WHERE is_active !='N'";
+  $conditions = " WHERE is_active ='Y'";
   $inventorys = fetch_all($fields, $table, $conditions);
 
   $fields = "*";
@@ -15,6 +15,11 @@
   $table = "driver";
   $conditions = "WHERE  position = '3' ";
   $driver = fetch_all($fields, $table);
+
+  $fields = "*";
+  $table = "usetime";  
+  $usetime = fetch_all($fields, $table);
+
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -49,12 +54,11 @@
             <div class="card-body">
               <form id="forminfo" class="form-horizontal" enctype="multipart/form-data" action="apps/usecar/do_usecar.php?action=create_repair"
                 method="POST" autocomplete="off">
-
+                <?php if($_SESSION["POSITION"] == "1" || $_SESSION["POSITION"] == "4"){ ?>
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label"><?php lang("carname");?> <span class="text-danger">*</span></label>
                   <div class="col-sm-10">
-                  <select class="form-control select2bs4 select2-hidden-accessible" name="inven" id="inven" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                    <!-- <option selected="selected" data-select2-id="19">Alabama</option> -->
+                  <select class="form-control select2bs4 select2-hidden-accessible" name="inven" id="inven" style="width: 100%;" tabindex="-1" aria-hidden="true">                    
                     <option value="">-- <?php lang("Please Select Inventory");?> --</option>
                     <?php
                       foreach($inventorys as $v){
@@ -64,12 +68,26 @@
                   </select>
                 </div>
                 </div>
-
+                <?php } ?>
                 <div class="form-group row">
                   <label for="name" class="col-sm-2 col-form-label"><?php lang("usedate");?> <span class="text-danger">*</span></label>
                   <div class="col-sm-10">
                     <input type="date" class="form-control" id="usedate" name="usedate" value="" style="width:200px;"
-                      placeholder="<?php lang("goto");?>" required>
+                      placeholder="<?php lang("goto");?>" required>                      
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="problem" class="col-sm-2 col-form-label"><?php lang("usetime");?> <span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <select name="usetime" id="usetime" class="form-control select2bs4 select2-hidden-accessible" style="width: 200px;">
+                        <option value="">-- <?php lang("Please Select Time");?> --</option>
+                        <?php
+                          foreach($usetime as $v){
+                        ?>
+                          <option value="<?php echo $v["id"];?>"><?php echo $v["name"];?></option>
+                        <?php } ?>
+                      </select>
                   </div>
                 </div>
 
@@ -86,6 +104,7 @@
                       </select>
                   </div>
                 </div>
+
                 <div class="form-group row">
                   <label for="name" class="col-sm-2 col-form-label"><?php lang("usename");?> <span class="text-danger">*</span></label>
                   <div class="col-sm-10">
