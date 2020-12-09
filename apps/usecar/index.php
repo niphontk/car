@@ -109,10 +109,11 @@
                         <?php } ?>
                         <th><?php lang("daterequest");?></th>
                         <th><?php lang("carname");?></th>
+                        <th><?php lang("user_request");?></th>
                         <th><?php lang("datego");?></th>
                         <th><?php lang("timego");?></th>
-                        <th><?php lang("usename");?></th>
                         <th><?php lang("goto");?></th>
+                        <th><?php lang("personnum");?></th>
                         <th><?php lang("Status");?></th>
                         <th><?php lang("driver");?></th>
                         <th></th>
@@ -140,10 +141,11 @@
                         <?php } ?>
                         <td><?php echo $usecar["created_at"];?></td>                        
                         <td><?php echo isset($inventory_txt[$usecar["inventory_id"]]) ? $inventory_txt[$usecar["inventory_id"]] : "-";?></td>
+                        <td><?php echo isset($users_txt[$usecar["user_id"]]) ? $users_txt[$usecar["user_id"]] : "-";?></td> 
                         <td><?php echo $usecar["use_date"];?></td>
                         <td><?php echo $usetime_txt[$usecar["use_time"]];?></td>
-                        <td><?php echo $usecar["title"];?></td>
                         <td><?php echo $usecar["goto"];?></td>
+                        <td><?php echo $usecar["person"];?></td>
                         <td><?php if($usecar["approve"]=="1") {echo "อนุมัติ";} elseif($usecar["approve"]!="1") {echo "รออนุมัติ";} ?></td>  
                         <td><?php echo isset($driver_txt[$usecar["driver_id"]]) ? $driver_txt[$usecar["driver_id"]] : "-";?></td>  
                         <td>

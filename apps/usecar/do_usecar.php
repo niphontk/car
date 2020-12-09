@@ -36,8 +36,6 @@ if(isset($_GET["action"]) && $_GET["action"] == "create_repair"){
         exit();
     }
 
-    //$req["description"] = filter_var_string($_POST["description"], "Description");
-
 try{
 
     $sql = "INSERT INTO `usecar` SET ";
@@ -72,7 +70,18 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
+
+            $linetoken = fetch_all("*","linetoken");
+            $linetoken_txt = array();
+            foreach($linetoken as $linetoken){
+                $linetoken_txt[$linetoken["linetoken"]] = $linetoken["linetoken"];
+            }
             
+            $txt ="มีการจองรถ กรุณาตรวจสอบ" ;
+            
+            $line_token = $linetoken["linetoken"];   
+                   
+            sendline("$txt","$line_token");
             header("location:../../index.php?page=usecar");
         }
         exit();     
@@ -98,6 +107,18 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
+
+            $linetoken = fetch_all("*","linetoken");
+            $linetoken_txt = array();
+            foreach($linetoken as $linetoken){
+                $linetoken_txt[$linetoken["linetoken"]] = $linetoken["linetoken"];
+            }
+            
+            $txt ="มีการลบการจองรถ กรุณาตรวจสอบ" ;
+            
+            $line_token = $linetoken["linetoken"];   
+                   
+            sendline("$txt","$line_token");
             header("location:../../index.php?page=usecar");
         }
         exit();
@@ -118,6 +139,17 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
+            $linetoken = fetch_all("*","linetoken");
+            $linetoken_txt = array();
+            foreach($linetoken as $linetoken){
+                $linetoken_txt[$linetoken["linetoken"]] = $linetoken["linetoken"];
+            }
+            
+            $txt ="มีการลบการจองรถ กรุณาตรวจสอบ" ;
+            
+            $line_token = $linetoken["linetoken"];   
+                   
+            sendline("$txt","$line_token");
             header("location:../../index.php?page=usecar");
         }
         exit();
@@ -430,6 +462,18 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
+
+            $linetoken = fetch_all("*","linetoken");
+            $linetoken_txt = array();
+            foreach($linetoken as $linetoken){
+                $linetoken_txt[$linetoken["linetoken"]] = $linetoken["linetoken"];
+            }
+            
+            $txt ="มีการลบการจองรถ กรุณาตรวจสอบ" ;
+            
+            $line_token = $linetoken["linetoken"];   
+                   
+            sendline("$txt","$line_token");
             header("location:../../index.php?page=usecar");
         }
         exit();
@@ -467,6 +511,17 @@ try{
         if($_SESSION["POSITION"] == "2"){
             header("location:../../index.php?page=usecar");
         }else{
+            $linetoken = fetch_all("*","linetoken");
+            $linetoken_txt = array();
+            foreach($linetoken as $linetoken){
+                $linetoken_txt[$linetoken["linetoken"]] = $linetoken["linetoken"];
+            }
+            
+            $txt ="มีการลบการจองรถ กรุณาตรวจสอบ" ;
+            
+            $line_token = $linetoken["linetoken"];   
+                   
+            sendline("$txt","$line_token");
             header("location:../../index.php?page=usecar");
         }
         exit();
