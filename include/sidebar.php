@@ -84,6 +84,14 @@ $arr_usecar = array("usecar","usecar/add","usecar/edit","usecar/delete");
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="report.php" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-list"></i>
+            <p>
+            <?php lang("report");?>
+            </p>
+          </a>
+        </li>
         <?php } ?>
         <!-- <?php if($_SESSION["POSITION"] == "1"){?>
         <li class="nav-item">

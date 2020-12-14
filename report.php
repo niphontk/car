@@ -1,7 +1,14 @@
 <?php
     require('config_car.php');
 ?>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <body>
 <div class="container">
 <div class="panel-body">
@@ -66,12 +73,27 @@
                 
         </div>   <br />
                 <input class="btn btn-success" name="submit" type="submit" value="ค้นหา">
-                <input class="btn btn-success" type="submit" name="Submit" value=" PRINT " onClick="javascript:this.style.display='none';window.print()">
+                <!-- <input class="btn btn-success" type="submit" name="Submit" value=" PRINT " onClick="javascript:this.style.display='none';window.print()"> -->
+                <button type="button"  class="btn btn-success " onclick="printDiv(data)"><span class=" glyphicon glyphicon-print"></span>&nbsp;พิมพ์</button>
         </div>
         </div>
     </div>
     </form>  
-    
+
+    <script>
+        function printDiv(data) {
+            var printContents = document.getElementById('data').innerHTML;    
+        var originalContents = document.body.innerHTML;      
+        document.body.innerHTML = printContents;     
+        window.print();     
+        document.body.innerHTML = originalContents;
+        }
+    </script>
+
+    <!-- <style type="text/css">
+        #data { margin: 0 auto; width:700px; padding:20px; border:#066 thin ridge; height:880px; }      
+    </style> -->
+<div id="data"> 
     <table class="table table-bordered" cellspacing="0" cellpadding="2">
     <tr class="success">
         <td>ผู้ขอรถ</td>
@@ -102,7 +124,8 @@
                
     </tr>
         <?php } ?>
-</table>  
+</table> 
+</div> 
 </div>
 </div>
 </div>

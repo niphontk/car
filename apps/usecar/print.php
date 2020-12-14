@@ -198,142 +198,127 @@ table {
                 <table >
                     <tr>
                         <td width="40%">
-                            <img src="assets/img/crut.png" width="100" height="100">
+                            
                         </td>
-                        <td valign="bottom"><h2>บันทึกข้อความ</h2> <br> 
-                        </td>
+                        <td valign="bottom"><h2>ใบขออนุญาตใช้รถส่วนกลาง</h2></td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แบบ ๓</td><br>                                                 
                     </tr>
                 </table>
                 <table >
                     <tr>
-                        <td >
-                            <p>                             
-                                ส่วนราชการ กลุ่มงานประกันสุขภาพ ยุทธศาสตร์และสารสนเทศทางการแพทย์ โรงพยาบาลตระการพืชผล                                                
-                            </p>
-                        </td>                        
-                        
+                    <td width="50%"></td>
+                        <td valign="bottom">   
+                                วันที่ <?php echo thai_date_and_time(strtotime(date('Y/m/d'))); //https://www.ninenik.com/content.php?arti_id=459 ?>                                                        
+                        </td>                                                
                     </tr>  
                     <tr>
-                        <td>ที่ <?php echo "อบ. 0032.009.11/" ?>  </td> 
-                        <td>วันที่ <?php echo thai_date_and_time(strtotime($v["updated_at"])); //https://www.ninenik.com/content.php?arti_id=459 ?></td>
+                        <td>เรียน (ผู้มีอำนาจสั่งใช้รถ) ผู้อำนวยการ โรงพยาบาลตระการพืชผล</td> 
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>เรื่อง ขออนุมัติซ่อม/จัดซื้อทดแทน <?php echo $inventory_txt[$v["inventory_id"]];?></td>
-                        <td align = "right">ใบส่งซ่อมเลขที่ 63/<?php echo $v["id"];?></td>
+                        <td>ข้าพเจ้า <?php echo "นายนิพนธ์  เทียนหอม"?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ตำแหน่ง <?php echo "นักวิชาการคอมพิวเตอร์ ปฏิบัติการ"?></td>                        
                     </tr>
                     <tr>
-                        <td colspan=2>เรียน ผู้อำนวยการ โรงพยาบาลตระการพืชผล</td>
+                        <td colspan=2>ขออนุญาตใช้รถ (ไปที่ไหน) <?php echo "สำนักงานสาธารณสุขจังหวัดอุบลราชธานี"?></td>
+                    </tr>                    
+                    <tr>
+                        <td colspan=2>เพื่อ <?php echo "ประชุม SA"?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีคนนั่ง <?php echo " 5 คน"?></td>
                     </tr>
                     
                     <tr>
-                        <td colspan=2>
-                        <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วย &nbsp; <?php echo $depart_txt[$inventory_depart[$v["inventory_id"]]]; ?>&nbsp; มีความประสงค์ที่จะส่งซ่อม/จัดซื้อทดแทน อุปกรณ์ <?php echo $inventory_txt[$v["inventory_id"]].' เลขที่อุปกรณ์ '.$inventory_idnumber[$v["inventory_id"]]?> เนื่องจากพบปัญหา 
-                        <?php echo $problem_txt[$v["problem"]] ?> 
-                        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จึงเรียนมาเพื่อพิจารณาดำเดินการ</p>
-                        </p>
+                        <td colspan=2>ในวันที่ <?php echo thai_date_and_time(strtotime(date('Y/m/d')));?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เวลา <?php echo " 12.00 น."?></td>
+                    </tr>                    
+                    <tr>
+                    <td colspan=2>ถึงวันที่ <?php echo thai_date_and_time(strtotime(date('Y/m/d')));?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เวลา <?php echo " 16.00 น."?></td>
+                    </tr>
+
+                    <tr>
+                    <td width="50%"></td>
+                        <td valign="bottom">   
+                                ...............................ผู้ขออนุญาต                                                      
+                        </td>                                                
+                    </tr> 
+                    <tr>
+
+                    <td width="50%"></td>
+                        <td valign="bottom">   
+                                ...............................ผู้อำนวยการกอง/หัวหน้ากอง/หรือผู้แทน                                                      
+                        </td>                                                
+                    </tr> 
+
+                    <tr>
+                    <td width="50%"></td>
+                        <td valign="bottom">   
+                          <?php echo thai_date_and_time(strtotime(date('Y/m/d')));?>&nbsp;&nbsp;(วัน เดือน ปี)                                                      
+                        </td>                                                
+                    </tr> 
+
+                    <tr>                    
+                        <td valign="bottom">   
+                        ให้&nbsp;&nbsp;<?php echo "นายพิทยา  จันทรา"?>&nbsp;&nbsp;  ขับรถหมายเลข &nbsp;&nbsp;<?php echo "รถตู้โดยสารขนาด 12 ที่นั่ง กก-3360"?>                                                
+                        </td>    
+                        <td width="50%"> </td>                                            
+                    </tr> 
+
+                    <tr>
+                    <td width="50%"></td>
+                        <td valign="bottom">   
+                          <?php echo "นายพิทยา  จันทรา"?>&nbsp;&nbsp;ผู้จัดรถ                                                      
+                        </td>                                                
+                    </tr> 
+
+                    <tr>                    
+                        <td valign="bottom">   
+                        (ลงนามผู้มีอำนาจสั่งใช้รถ)&nbsp;&nbsp;<?php echo "............................................."?><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ลงวันที่&nbsp;&nbsp;&nbsp;&nbsp;<?php echo "....../........../........."?>
+                        </td>    
+                        <td width="50%"> </td>                                            
+                    </tr> 
+
+                    <tr>                    
+                        <td >   
+                        &nbsp;&nbsp;&nbsp;&nbsp;<?php echo ""?>
+                        </td>    
+                        <td width="50%"> </td>                                            
+                    </tr>                     
+                </table>  
+                <table >
+                    <tr>
+                        <td width="40%">
+                            
                         </td>
+                        <td valign="bottom"><h2>การรับ - ส่งรถก่อนและหลังใช้งาน</h2></td> <td></td><br>                                                 
+                    </tr>
+                </table>  
+                
+                <table >                      
+                    <tr>
+                        <td>1. การรับรถ  &nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="checkall">&nbsp;&nbsp;ปกติ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="checkall">&nbsp;&nbsp;ผิดปกติ...............................</td> 
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ก่อนใช้งาน <?php echo "ผู้ส่ง..................................."?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้รับ <?php echo "................................."?></td>                        
+                    </tr>
+                    <tr>
+                        <td>2. การส่งรถ &nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="checkall">&nbsp;&nbsp;ปกติ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="checkall">&nbsp;&nbsp;ผิดปกติ...............................</td> 
+                    </tr>                    
+                    <tr>
+                    <td>หลังใช้งาน <?php echo "ผู้ส่ง..................................."?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้รับ <?php echo "................................."?></td>                        
                     </tr>
                     
                     <tr>
-                        <!-- <td width="340"></td> -->
-                        <td width="50%"> </td>
-                         <td align="center">.....................................<br>(<?php echo $users_txt[$v["user_id"]]?>)<br>ผู้ขอรับบริการ</td>                         
-                         
-                    </tr>
-                </table>
-                <table border="1">
-                    <tr>
-                        <td width="50%" >
-                        &nbsp;<h4>ผลการตรวจสอบ</h4>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; พบว่า <?php echo $v["jobdetail"];  ?><br><br>
-                        </p>
-                        <p>
-                        
-                        </p>
-                        <br>
-                        <br>
-                        <br>
-                        </td>
-                        <td width="50%">
-                        &nbsp;<h4>ผลการดำเนินงานซ่อม</h4>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp; ผลการซ่อม <?php echo $status_txt[$arr_repair_detail_status[$v["id"]]]." ".$arr_repair_detail_note[$v["id"]] ?><br><br>
-                        </p>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลงชื่อ......................................... <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo $technician[$v["technician"]] ?>)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $position_name[$v["technician"]] ?> <br>          
-                        </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        
-                        <td width="50%">
-                        &nbsp;<h4>เรียนผู้อำนวยการ<?php echo "โรงพยาบาลตระการพืชผล"?></h4>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จากการตรวจสอบอุปกรณ์ <?php echo $inventory_txt[$v["inventory_id"]];?> พบว่า <?php echo $v["jobdetail"]; ?> จึงขออนุมัติส่งซ่อม/จัดซื้อทดแทน <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; จึงเรียนมาเพื่อทราบและพิจารณาดำเนินการ<br>
-                        </p>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลงชื่อ..................................... <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<?php echo "นายนิพนธ์  เทียนหอม" ?>)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "นักวิชาการคอมพิวเตอร์" ?> <br>
-                        </p>
-
-                        </td>
-
-                        <td width="50%">
-                        &nbsp;<h4>ความเห็นหัวหน้ากลุ่มงานประกันสุขภาพ ฯ</h4>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;&nbsp;&nbsp;] เห็นควร <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;&nbsp;&nbsp;] ไม่เห็นควร&nbsp;&nbsp;&nbsp;&nbsp;ให้ดำเนินการตามที่เสนอ <br>
-                        </p>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลงชื่อ............................................... <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo "นายนิติชัย  ทุมนันท์" ?>) <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo "นักวิชาการสาธารณสุข ชำนาญการ" ?> <br>
-                        </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="50%">
-                        &nbsp;<h4>เสนอผู้อำนวยการ ตามรายการดังกล่าวข้างต้น</h4><br>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp; [&nbsp;&nbsp;&nbsp;&nbsp;] ให้ดำเนินการได้ <br> &nbsp;&nbsp;&nbsp;&nbsp; [&nbsp;&nbsp;&nbsp;&nbsp;] ไม่ควรดำเนินการเนื่องจาก .....................................
-                        ........................................................................................ <br><br><br>
-                        </p>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo "นายอุดม  โบจรัส" ?>)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo "ผู้อำนวยการโรงพยาบาลตระการพืชผล" ?>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php //echo $data->DIRECTOR_POSITION2 ?>
-                        </p>          
-                        </td>
-                        <td width="50%">
-                        &nbsp;<h4>สำหรับผู้รับบริการลงชื่อเพื่อรับผลงาน</h4><br>
-                        <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp; อุปกรณ์ <?php echo $inventory_txt[$v["inventory_id"]];?> ได้ทำการซ่อมบำรุงเสร็จสิ้น ได้ส่งมอบอุปกรณ์คืนแก่กลุ่มงานที่รับผิดชอบ<br>
-                        เมื่อวันที่ ............................................. <br><br>
-                        </p>
-                        <p><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลงชื่อ.........................................ผู้รับงาน<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<?php echo $users_txt[$v["user_id"]]?>)
-                        </p><br>
-                        </td>        
-                    </tr>
-                </table>
+                        <td >หมายเหตุ ก่อนรับรถทุกครั้งให้ตรวจสภาพรถและอุปกรณ์ประจำรถโดยละเอียด</td>
+                    </tr>                                        
+                </table>  
+                
                 </div>
-            </div>            
+            </div>
           </div>
       </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
 </body>
 </html>
 
